@@ -29,8 +29,6 @@ public class ScoreManager : SingletonMono<ScoreManager>
 
     public float BadScoreRatio = 0f;
 
-    public event System.Action CallUpdateScore;
-
     private void Start()
     {
         NewGame();
@@ -74,7 +72,7 @@ public class ScoreManager : SingletonMono<ScoreManager>
 
         scored = (TotalScore / TotalNotes) * scoreRatio;
         CurrentScore -= scored;
-        CallUpdateScore?.Invoke();
+        EventManager.Instance.OnPlayerScored();
     }
 }
 

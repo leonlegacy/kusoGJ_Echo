@@ -6,20 +6,17 @@ public class ResultDisplay : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI scoreText, perfectText, goodText, badText, realtimeScoreText;
 
-    [SerializeField]
-    ScoreManager scoreManager;
-
     private void OnEnable()
     {
         realtimeScoreText.text = ScoreManager.Instance.TotalScore.ToString("0");
         CliffLeeCL.EventManager.Instance.onNewGameLoad += DisplayResult;
-        ScoreManager.Instance.CallUpdateScore += UpdateScore;
+        CliffLeeCL.EventManager.Instance.onPlayerScored += UpdateScore;
     }
 
     private void OnDisable()
     {
         CliffLeeCL.EventManager.Instance.onNewGameLoad -= DisplayResult;
-        ScoreManager.Instance.CallUpdateScore -= UpdateScore;
+        CliffLeeCL.EventManager.Instance.onPlayerScored -= UpdateScore;
     }
 
     public void DisplayResult()
