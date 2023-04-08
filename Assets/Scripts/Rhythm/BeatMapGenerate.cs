@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 namespace Rhythm{
 	public class BeatMapGenerate : MonoBehaviour{
@@ -18,8 +19,12 @@ namespace Rhythm{
 		[SerializeField]
 		private BeatGO beatGo;
 
+		[FormerlySerializedAs("beatSpeed")]
 		[SerializeField]
-		private float beatSpeed = 2f;
+		private float inSpeed = 2f;
+
+		[SerializeField]
+		private float outSpeed = 2f;
 
 		[SerializeField]
 		private MusicDatas musicDatas;
@@ -66,10 +71,10 @@ namespace Rhythm{
 			Vector3 controlPoint = startPos + (endPos - startPos) / 2f + Vector3.up * height;
 			beat.transform.position = startPos;
 			// 拋物線移動
-			var curvePath = beat.transform.DOPath(new[] { startPos, controlPoint, endPos }, beatSpeed, PathType.CatmullRom)
+			var curvePath = beat.transform.DOPath(new[] { startPos, controlPoint, endPos }, inSpeed, PathType.CatmullRom)
 								.SetEase(Ease.Linear);
-			
-			var moveToEnd = beat.transform.DOMoveX(15f, beatSpeed).SetSpeedBased();
+
+			var moveToEnd = beat.transform.DOMoveX(15f, outSpeed).SetSpeedBased();
 
 			Sequence sequence = DOTween.Sequence();
 			sequence.Append(curvePath).Append(moveToEnd).AppendCallback(()=>ReleaseBeat(beat));
