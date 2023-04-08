@@ -76,6 +76,11 @@ namespace CliffLeeCL
         {
             onMusicPlay?.Invoke(musicId);
         }
+
+        public void OnNewGameLoad()
+        {
+            onNewGameLoad?.Invoke();
+        }
     }
 }
 
