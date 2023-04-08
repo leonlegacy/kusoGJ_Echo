@@ -9,9 +9,9 @@ public class ResultDisplay : MonoBehaviour
     [SerializeField]
     ScoreManager scoreManager;
 
-    public void Awake()
+    private void Start()
     {
-        scoreManager.NewGame();
+        DisplayResult();
     }
 
     public void DisplayResult()
