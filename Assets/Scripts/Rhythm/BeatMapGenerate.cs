@@ -32,19 +32,6 @@ namespace Rhythm{
 			beatPool = new ObjectPool<BeatGO>(InstantiateBeat,OnGenerateBeat);
 		}
 
-		private void OnGenerateBeat(BeatGO beat)
-		{
-			// 计算控制点的位置
-			var startPos = spawnRoot.position;
-			var endPos = targetRoot.position;
-			var height = 2f;
-			Vector3 controlPoint = startPos + (endPos - startPos) / 2f + Vector3.up * height;
-
-			// 沿着抛物线移动物体
-			beat.transform.DOPath(new Vector3[] { startPos, controlPoint, endPos }, beatSpeed, PathType.CatmullRom)
-					 .SetEase(Ease.Linear);
-		}
-
 		private void Start(){
 			Generate();
 		}
@@ -68,6 +55,29 @@ namespace Rhythm{
 
 		private BeatGO InstantiateBeat() {
 			return Instantiate(beatGo,spawnRoot.position,Quaternion.identity);
+		}
+
+		private void OnGenerateBeat(BeatGO beat)
+		{
+			beat.transform.position = spawnRoot.position;
+			// 计算控制点的位置
+			var startPos = spawnRoot.position;
+			var endPos = targetRoot.position;
+			var height = 2f;
+			Vector3 controlPoint = startPos + (endPos - startPos) / 2f + Vector3.up * height;
+			// 拋物線移動
+			var curvePath = beat.transform.DOPath(new[] { startPos, controlPoint, endPos }, beatSpeed, PathType.CatmullRom)
+								.SetEase(Ease.Linear);
+			
+			var moveToEnd = beat.transform.DOMoveX(15f, beatSpeed).SetSpeedBased();
+
+			Sequence sequence = DOTween.Sequence();
+			sequence.Append(curvePath).Append(moveToEnd).AppendCallback(()=>ReleaseBeat(beat));
+		}
+
+		private void ReleaseBeat(BeatGO beat)
+		{
+			beatPool.Release(beat);
 		}
 	}
 }
