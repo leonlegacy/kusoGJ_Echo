@@ -2,26 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CliffLeeCL;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 
-public class MusicPlayer : MonoBehaviour {
+public class MusicPlayer : SerializedMonoBehaviour {
     /// <summary>
     /// The variable is used to access this class.
     /// </summary>
-    public static MusicPlayer instance;
-    public AudioSource audioSource;
-    public List<Song> songs = new List<Song>();
-    public double lastPlayedDspTime;
-    public float songDelayTime;
-    public bool isSongPlayed;
+    public static MusicPlayer Instance;
+    
+    public Dictionary<AudioManager.AudioName, Song> audioNameToSongDict;
+    
+    [SerializeField] float songDelayTime;
+    [SerializeField] bool isSongPlayed;
+    double lastPlayedDspTime;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
@@ -29,74 +32,46 @@ public class MusicPlayer : MonoBehaviour {
 
     void Start()
     {
-        //float beatPeriod = 60.0f / song.beatsPerMinute;
-        /*
-        song.notes.Add(new Note(Color.red, Color.black, beatPeriod * 2.0f, 0));
-        
-        song.notes.Add(new Note(Color.red, Color.black, beatPeriod * 4.0f, 0));
-        song.notes.Add(new Note(Color.green, Color.black, beatPeriod * 6.0f, 1));
-        song.notes.Add(new Note(Color.green, Color.black, beatPeriod * 8.0f, 1));
-        song.notes.Add(new Note(Color.blue, Color.black, beatPeriod * 10.0f, 2));
-        song.notes.Add(new Note(Color.blue, Color.black, beatPeriod * 12.0f, 2));
-        song.notes.Add(new Note(Color.yellow, Color.black, beatPeriod * 14.0f, 0));
-        song.notes.Add(new Note(Color.yellow, Color.black, beatPeriod * 16.0f, 0));
-        song.notes.Add(new Note(Color.magenta, Color.black, beatPeriod * 18.0f, 1));
-        song.notes.Add(new Note(Color.magenta, Color.black, beatPeriod * 20.0f, 1));
-        song.notes.Add(new Note(Color.cyan, Color.black, beatPeriod * 22.0f, 2));
-        song.notes.Add(new Note(Color.cyan, Color.black, beatPeriod * 24.0f, 2));
-        */
-
-        //EventManager.instance.onGameStart += OnGameStart;
-        //EventManager.instance.onGameRestart += OnGameRestart;
+        EventManager.Instance.onGameStart += OnGameStart;
     }
 
     void OnDisable()
     {
-        //EventManager.instance.onGameStart -= OnGameStart;
+        EventManager.Instance.onGameStart -= OnGameStart;
     }
 
     void OnGameStart()
     {
-        lastPlayedDspTime = PlaySong(songs[0], songDelayTime);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            lastPlayedDspTime = PlaySong(songs[0], songDelayTime);
+            AudioManager.Instance.PlayMusic(AudioManager.AudioName.GameSong1, songDelayTime);
+            lastPlayedDspTime = AudioSettings.dspTime + songDelayTime;
+            isSongPlayed = true;
         }
 
-        if (isSongPlayed && !audioSource.isPlaying)
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            AudioManager.Instance.PlayMusicReversed(AudioManager.AudioName.GameSong1, songDelayTime);
+            lastPlayedDspTime = AudioSettings.dspTime + songDelayTime;
+            isSongPlayed = true;
+        }
+
+        if (isSongPlayed && !AudioManager.Instance.IsMusicPlaying())
         {
             isSongPlayed = false;
-            //EventManager.instance.OnSongEnded();
+            EventManager.Instance.OnGameOver();
         }
-    }
-
-    public double PlaySong(Song song, float delayTime)
-    {
-        AudioClip clip = Resources.Load<AudioClip>("Audio/" + song.songName);
-
-        song.duration = clip.length;
-        audioSource.clip = clip;
-        audioSource.PlayScheduled(AudioSettings.dspTime + delayTime);
-        isSongPlayed = true;
-        //EventManager.instance.OnSongPlayed(song);
-
-        return AudioSettings.dspTime + delayTime;
     }
 
     public double StopSong()
     {
-        audioSource.Stop();
+        AudioManager.Instance.StopMusic();
         isSongPlayed = false;
 
         return AudioSettings.dspTime;
-    }
-
-    public void OnGameRestart()
-    {
-        lastPlayedDspTime = PlaySong(songs[0], songDelayTime);
     }
 }

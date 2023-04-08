@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 namespace CliffLeeCL
 {
@@ -12,7 +13,7 @@ namespace CliffLeeCL
         public enum AudioName
         {
             ButtonClicked,
-            EnemyDead1,
+            GameSong1,
             EnemyDead2,
             EnemyDead3,
             EnemySlash,
@@ -20,35 +21,36 @@ namespace CliffLeeCL
             Pass
         }
 
-        public AudioMixerGroup audioGroup;
-        public AudioClip[] audioClips;
-        public List<AudioSource> pooledSources;
-        public int pooledAmount = 10;
-        public float lowPitchRange = 0.95f, highPitchRange = 1.05f;
-        public bool canGrow = true;
+        [SerializeField] AudioMixerGroup audioGroup;
+        [SerializeField] AudioClip[] audioClips;
+        [SerializeField] AudioSource musicSource;
+        [SerializeField] int pooledSoundSourceAmount = 10;
+        [SerializeField] float lowPitchRange = 0.95f, highPitchRange = 1.05f;
+        [SerializeField] bool canGrow = true;
+        List<AudioSource> pooledSoundSources;
 
         // Use this for initialization
         void Start()
         {
-            pooledSources = new List<AudioSource>();
+            pooledSoundSources = new List<AudioSource>();
 
-            for (int i = 0; i < pooledAmount; i++)
+            for (int i = 0; i < pooledSoundSourceAmount; i++)
             {
                 AudioSource source = gameObject.AddComponent<AudioSource>();
 
                 source.outputAudioMixerGroup = audioGroup;
                 source.playOnAwake = false;
-                pooledSources.Add(source);
+                pooledSoundSources.Add(source);
             }
         }
 
         public AudioSource GetSoucre()
         {
-            for (int i = 0; i < pooledSources.Count; i++)
+            for (int i = 0; i < pooledSoundSources.Count; i++)
             {
-                if (!pooledSources[i].isPlaying)
+                if (!pooledSoundSources[i].isPlaying)
                 {
-                    return pooledSources[i];
+                    return pooledSoundSources[i];
                 }
             }
 
@@ -58,11 +60,50 @@ namespace CliffLeeCL
 
                 source.outputAudioMixerGroup = audioGroup;
                 source.playOnAwake = false;
-                pooledSources.Add(source);
+                pooledSoundSources.Add(source);
                 return source;
             }
 
             return null;
+        }
+
+        public void PlayMusic(AudioName clipName, float delayTime = 0.0f)
+        {
+            if (audioClips[(int) clipName])
+            {
+                musicSource.clip = audioClips[(int) clipName]; 
+                musicSource.pitch = 1.0f;
+                musicSource.PlayScheduled(AudioSettings.dspTime + delayTime);
+            }
+            else
+            {
+                print("AudioManager : AudioClip[" + name.ToString() + "] is not setted");
+            }
+        }
+        
+        public void PlayMusicReversed(AudioName clipName, float delayTime = 0.0f)
+        {
+            if (audioClips[(int) clipName])
+            {
+                musicSource.clip = audioClips[(int) clipName]; 
+                musicSource.pitch = -1.0f;
+                musicSource.timeSamples = musicSource.clip.samples - 1;
+                musicSource.PlayScheduled(AudioSettings.dspTime + delayTime);
+            }
+            else
+            {
+                print("AudioManager : AudioClip[" + name.ToString() + "] is not setted");
+            }
+        }
+
+        public void StopMusic()
+        {
+            musicSource.Stop();
+        }
+        
+        public bool IsMusicPlaying()
+        {
+            return musicSource.isPlaying;
         }
 
         public void PlaySound(params AudioName[] name)

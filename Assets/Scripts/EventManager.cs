@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace CliffLeeCL
 {
@@ -27,19 +28,26 @@ namespace CliffLeeCL
     public class EventManager : Singleton<EventManager>
     {
         /// <summary>
-        /// Define default event's function signature.
+        /// The event is called when game start.
         /// </summary>
-        public delegate void DefaultEventHandler();
+        public event Action onGameStart;
+        
         /// <summary>
         /// The event is called when game over.
         /// </summary>
         /// <seealso cref="OnGameOver"/>
-        public event DefaultEventHandler onGameOver;
+        public event Action onGameOver;
         /// <summary>
         /// The event is called when a player scored. Only can call on the server(SyncEvent).
         /// </summary>
         /// <seealso cref="OnPlayerScored"/>
-        public event DefaultEventHandler onPlayerScored;
+        public event Action onPlayerScored;
+
+        public void OnGameStart()
+        {
+            onGameStart?.Invoke();
+            Debug.Log("OnGameStart event is invoked!");
+        }
 
         /// <summary>
         /// The function is called when a player scored.
@@ -47,8 +55,7 @@ namespace CliffLeeCL
         /// <seealso cref="onGameOver"/>
         public void OnGameOver()
         {
-            if (onGameOver != null)
-                onGameOver();
+            onGameOver?.Invoke();
             Debug.Log("OnGameOver event is invoked!");
         }
 
@@ -58,8 +65,7 @@ namespace CliffLeeCL
         /// <seealso cref="onPlayerScored"/>
         public void OnPlayerScored()
         {
-            if (onPlayerScored != null)
-                onPlayerScored();
+            onPlayerScored?.Invoke(); 
         }
     }
 }
