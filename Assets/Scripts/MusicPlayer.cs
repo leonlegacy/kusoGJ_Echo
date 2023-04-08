@@ -11,7 +11,7 @@ public class MusicPlayer : SerializedMonoBehaviour {
     /// </summary>
     public static MusicPlayer Instance;
     
-    public Dictionary<AudioManager.AudioName, Song> audioNameToSongDict;
+    public Dictionary<string, Song> songNameToSongDict;
     
     [SerializeField] float songDelayTime;
     [SerializeField] bool isSongPlayed;
@@ -42,22 +42,19 @@ public class MusicPlayer : SerializedMonoBehaviour {
 
     void OnGameStart()
     {
+        PlaySong("TestSong1", false);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            AudioManager.Instance.PlayMusic(AudioManager.AudioName.GameSong1, songDelayTime);
-            lastPlayedDspTime = AudioSettings.dspTime + songDelayTime;
-            isSongPlayed = true;
+            PlaySong("TestSong1", false);
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            AudioManager.Instance.PlayMusicReversed(AudioManager.AudioName.GameSong1, songDelayTime);
-            lastPlayedDspTime = AudioSettings.dspTime + songDelayTime;
-            isSongPlayed = true;
+            PlaySong("TestSong1", true);
         }
 
         if (isSongPlayed && !AudioManager.Instance.IsMusicPlaying())
@@ -65,6 +62,19 @@ public class MusicPlayer : SerializedMonoBehaviour {
             isSongPlayed = false;
             EventManager.Instance.OnGameOver();
         }
+    }
+
+    public void PlaySong(string songName, bool isReversed)
+    {
+        if (!songNameToSongDict.ContainsKey(songName)) 
+            return;
+
+        if (isReversed)
+            AudioManager.Instance.PlayMusicReversed(AudioManager.AudioName.GameSong1, songDelayTime);
+        else
+            AudioManager.Instance.PlayMusic(songNameToSongDict[songName].audioName, songDelayTime);
+        lastPlayedDspTime = AudioSettings.dspTime + songDelayTime;
+        isSongPlayed = true;
     }
 
     public double StopSong()
