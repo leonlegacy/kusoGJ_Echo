@@ -1,5 +1,6 @@
 using UnityEngine;
 using CliffLeeCL;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -18,7 +19,7 @@ public class ScoreManager : SingletonMono<ScoreManager>
     public int GoodHits { get; set; }
     public int BadHits { get; set; }
 
-    public int TotalNotes = 5;
+    public int TotalNotes = 5;  //How to update this number? => MusicDatas
 
     public float TotalScore = 10000f;
 
@@ -27,6 +28,8 @@ public class ScoreManager : SingletonMono<ScoreManager>
     public float GoodScoreRatio = .5f;
 
     public float BadScoreRatio = 0f;
+
+    public event System.Action CallUpdateScore;
 
     private void Start()
     {
@@ -71,6 +74,7 @@ public class ScoreManager : SingletonMono<ScoreManager>
 
         scored = (TotalScore / TotalNotes) * scoreRatio;
         CurrentScore -= scored;
+        CallUpdateScore?.Invoke();
     }
 }
 
@@ -89,12 +93,12 @@ class ScoreManagerDebug : Editor
             debugger.HitToScore(HitType.Perfect);
         }
 
-        if (GUILayout.Button("Hit Good."))
+        if(GUILayout.Button("Hit Good."))
         {
             debugger.HitToScore(HitType.Good);
         }
 
-        if (GUILayout.Button("Hit Bad."))
+        if(GUILayout.Button("Hit Bad."))
         {
             debugger.HitToScore(HitType.Bad);
         }

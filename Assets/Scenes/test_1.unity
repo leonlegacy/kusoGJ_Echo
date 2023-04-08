@@ -301,17 +301,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &490859273 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8838646319232551984, guid: 93d974aede6bf124eb19266b0d0be24e, type: 3}
-  m_PrefabInstance: {fileID: 8838646319421220665}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21773aaaa7a9dc84086d49d97fe195fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &730252563
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,7 +587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &954111920
 AudioSource:
   m_ObjectHideFlags: 0
@@ -612,7 +601,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 8ddc85374640b7d4a96f86751f3b1c57, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: -1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1005,7 +994,6 @@ GameObject:
   - component: {fileID: 1498215172}
   - component: {fileID: 1498215171}
   - component: {fileID: 1498215170}
-  - component: {fileID: 1498215174}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1095,23 +1083,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1498215174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498215169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 023c8db3fcc097246a636af77f87ac0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1468444514}
-  perfectText: {fileID: 1777110441}
-  goodText: {fileID: 814775543}
-  badText: {fileID: 730252565}
-  scoreManager: {fileID: 490859273}
 --- !u!1 &1777110439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,6 +1225,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8838646319232551984, guid: 93d974aede6bf124eb19266b0d0be24e, type: 3}
+      propertyPath: badText
+      value: 
+      objectReference: {fileID: 730252565}
+    - target: {fileID: 8838646319232551984, guid: 93d974aede6bf124eb19266b0d0be24e, type: 3}
+      propertyPath: goodText
+      value: 
+      objectReference: {fileID: 814775543}
+    - target: {fileID: 8838646319232551984, guid: 93d974aede6bf124eb19266b0d0be24e, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1468444514}
+    - target: {fileID: 8838646319232551984, guid: 93d974aede6bf124eb19266b0d0be24e, type: 3}
+      propertyPath: perfectText
+      value: 
+      objectReference: {fileID: 1777110441}
     - target: {fileID: 8838646319232551985, guid: 93d974aede6bf124eb19266b0d0be24e, type: 3}
       propertyPath: m_Name
       value: ScoreManager

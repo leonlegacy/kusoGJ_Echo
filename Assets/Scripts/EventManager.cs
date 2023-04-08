@@ -43,6 +43,8 @@ namespace CliffLeeCL
         /// <seealso cref="OnPlayerScored"/>
         public event Action onPlayerScored;
 
+        public event Action onNewGameLoad;
+
         public void OnGameStart()
         {
             onGameStart?.Invoke();

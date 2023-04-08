@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviour
 {
     public void LoadLevel()
     {
-        
+        //Display Result page.
+
+        //Update result.
     }
 
     public void GameStart()
