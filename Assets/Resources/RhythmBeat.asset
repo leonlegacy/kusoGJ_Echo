@@ -24,12 +24,349 @@ MonoBehaviour:
   musics:
   - musicId: 0
     beatMap:
-    - createTime: 1
-    - createTime: 2
-    - createTime: 3
-    - createTime: 4
-    - createTime: 5
-    - createTime: 6
-    - createTime: 6.5
-    - createTime: 7
-    - createTime: 8
+    - createTime: 2.6105933
+      beatType: 0
+    - createTime: 3.7270179
+      beatType: 0
+    - createTime: 4.644764
+      beatType: 0
+    - createTime: 5.665676
+      beatType: 0
+    - createTime: 6.816018
+      beatType: 0
+    - createTime: 7.84708
+      beatType: 0
+    - createTime: 8.832651
+      beatType: 0
+    - createTime: 9.690495
+      beatType: 0
+    - createTime: 10.156958
+      beatType: 0
+    - createTime: 10.922742
+      beatType: 0
+    - createTime: 11.838047
+      beatType: 0
+    - createTime: 12.525389
+      beatType: 0
+    - createTime: 13.119215
+      beatType: 0
+    - createTime: 13.852165
+      beatType: 0
+    - createTime: 14.555475
+      beatType: 0
+    - createTime: 15.332266
+      beatType: 0
+    - createTime: 16.22478
+      beatType: 0
+    - createTime: 16.939451
+      beatType: 0
+    - createTime: 17.681572
+      beatType: 0
+    - createTime: 18.664867
+      beatType: 0
+    - createTime: 19.57182
+      beatType: 0
+    - createTime: 20.380735
+      beatType: 0
+    - createTime: 21.388395
+      beatType: 0
+    - createTime: 22.13754
+      beatType: 0
+    - createTime: 23.041895
+      beatType: 0
+    - createTime: 23.702633
+      beatType: 0
+    - createTime: 24.148172
+      beatType: 0
+    - createTime: 24.529778
+      beatType: 0
+    - createTime: 25.273737
+      beatType: 0
+    - createTime: 26.08927
+      beatType: 0
+    - createTime: 26.737978
+      beatType: 0
+    - createTime: 27.41309
+      beatType: 0
+    - createTime: 27.775578
+      beatType: 0
+    - createTime: 28.579746
+      beatType: 0
+    - createTime: 28.953583
+      beatType: 0
+    - createTime: 29.818298
+      beatType: 0
+    - createTime: 30.115528
+      beatType: 0
+    - createTime: 31.038963
+      beatType: 0
+    - createTime: 31.412125
+      beatType: 0
+    - createTime: 31.755436
+      beatType: 0
+    - createTime: 33.32853
+      beatType: 0
+    - createTime: 33.883602
+      beatType: 0
+    - createTime: 34.471466
+      beatType: 0
+    - createTime: 35.480404
+      beatType: 0
+    - createTime: 35.9674
+      beatType: 0
+    - createTime: 36.570133
+      beatType: 0
+    - createTime: 37.210106
+      beatType: 0
+    - createTime: 37.914562
+      beatType: 0
+    - createTime: 38.260616
+      beatType: 0
+    - createTime: 38.53965
+      beatType: 0
+    - createTime: 39.74406
+      beatType: 0
+    - createTime: 40.027172
+      beatType: 0
+    - createTime: 40.231655
+      beatType: 0
+    - createTime: 40.69006
+      beatType: 0
+    - createTime: 40.940845
+      beatType: 0
+    - createTime: 41.651386
+      beatType: 0
+    - createTime: 42.36301
+      beatType: 0
+    - createTime: 43.054466
+      beatType: 0
+    - createTime: 43.83971
+      beatType: 0
+    - createTime: 44.48271
+      beatType: 0
+    - createTime: 45.109806
+      beatType: 0
+    - createTime: 45.758377
+      beatType: 0
+    - createTime: 46.38188
+      beatType: 0
+    - createTime: 46.939434
+      beatType: 0
+    - createTime: 47.519882
+      beatType: 0
+    - createTime: 48.130962
+      beatType: 0
+    - createTime: 48.72058
+      beatType: 0
+    - createTime: 49.287
+      beatType: 0
+    - createTime: 50.001938
+      beatType: 0
+    - createTime: 50.549156
+      beatType: 0
+    - createTime: 51.20221
+      beatType: 0
+    - createTime: 51.835358
+      beatType: 0
+    - createTime: 52.471188
+      beatType: 0
+    - createTime: 53.08487
+      beatType: 0
+    - createTime: 53.659325
+      beatType: 0
+    - createTime: 54.180973
+      beatType: 0
+    - createTime: 54.420723
+      beatType: 0
+    - createTime: 54.58727
+      beatType: 0
+    - createTime: 55.182175
+      beatType: 0
+    - createTime: 55.961315
+      beatType: 0
+    - createTime: 56.465298
+      beatType: 0
+    - createTime: 57.15231
+      beatType: 0
+    - createTime: 57.808437
+      beatType: 0
+    - createTime: 58.55651
+      beatType: 0
+    - createTime: 59.328785
+      beatType: 0
+    - createTime: 59.96255
+      beatType: 0
+    - createTime: 60.658978
+      beatType: 0
+    - createTime: 61.4099
+      beatType: 0
+    - createTime: 62.111774
+      beatType: 0
+    - createTime: 62.698223
+      beatType: 0
+    - createTime: 63.21459
+      beatType: 0
+    - createTime: 63.360126
+      beatType: 0
+    - createTime: 63.53596
+      beatType: 0
+    - createTime: 64.14255
+      beatType: 0
+    - createTime: 64.75129
+      beatType: 0
+    - createTime: 65.75189
+      beatType: 0
+    - createTime: 66.54455
+      beatType: 0
+    - createTime: 67.20694
+      beatType: 0
+    - createTime: 67.85513
+      beatType: 0
+    - createTime: 68.45347
+      beatType: 0
+    - createTime: 69.01981
+      beatType: 0
+    - createTime: 69.645515
+      beatType: 0
+    - createTime: 70.343956
+      beatType: 0
+    - createTime: 71.02342
+      beatType: 0
+    - createTime: 71.677315
+      beatType: 0
+    - createTime: 72.39497
+      beatType: 0
+    - createTime: 73.00844
+      beatType: 0
+    - createTime: 73.553085
+      beatType: 0
+    - createTime: 74.30522
+      beatType: 0
+    - createTime: 74.84364
+      beatType: 0
+    - createTime: 75.47421
+      beatType: 0
+    - createTime: 75.61871
+      beatType: 0
+    - createTime: 75.77117
+      beatType: 0
+    - createTime: 76.221275
+      beatType: 0
+    - createTime: 76.89065
+      beatType: 0
+    - createTime: 77.27948
+      beatType: 0
+    - createTime: 78.079056
+      beatType: 0
+    - createTime: 78.72818
+      beatType: 0
+    - createTime: 79.60418
+      beatType: 0
+    - createTime: 80.66207
+      beatType: 0
+    - createTime: 81.68634
+      beatType: 0
+    - createTime: 82.940346
+      beatType: 0
+    - createTime: 84.10542
+      beatType: 0
+    - createTime: 84.88519
+      beatType: 0
+    - createTime: 85.78601
+      beatType: 0
+    - createTime: 86.68668
+      beatType: 0
+    - createTime: 87.52962
+      beatType: 0
+    - createTime: 88.45144
+      beatType: 0
+    - createTime: 89.178474
+      beatType: 0
+    - createTime: 89.91189
+      beatType: 0
+    - createTime: 90.67435
+      beatType: 0
+    - createTime: 90.923515
+      beatType: 0
+    - createTime: 91.099266
+      beatType: 0
+    - createTime: 91.57103
+      beatType: 0
+    - createTime: 92.29305
+      beatType: 0
+    - createTime: 92.47921
+      beatType: 0
+    - createTime: 92.94256
+      beatType: 0
+    - createTime: 93.50642
+      beatType: 0
+    - createTime: 93.697876
+      beatType: 0
+    - createTime: 94.26478
+      beatType: 0
+    - createTime: 95.1499
+      beatType: 0
+    - createTime: 95.984985
+      beatType: 0
+    - createTime: 96.77007
+      beatType: 0
+    - createTime: 97.602394
+      beatType: 0
+    - createTime: 98.39795
+      beatType: 0
+    - createTime: 99.05062
+      beatType: 0
+    - createTime: 100.22934
+      beatType: 0
+    - createTime: 101.19316
+      beatType: 0
+    - createTime: 102.1238
+      beatType: 0
+    - createTime: 103.06578
+      beatType: 0
+    - createTime: 104.11278
+      beatType: 0
+    - createTime: 105.10467
+      beatType: 0
+    - createTime: 106.043495
+      beatType: 0
+    - createTime: 107.01557
+      beatType: 0
+    - createTime: 107.23204
+      beatType: 0
+    - createTime: 107.87074
+      beatType: 0
+    - createTime: 108.788345
+      beatType: 0
+    - createTime: 109.5959
+      beatType: 0
+    - createTime: 110.25288
+      beatType: 0
+    - createTime: 111.878204
+      beatType: 0
+    - createTime: 112.565674
+      beatType: 0
+    - createTime: 113.150795
+      beatType: 0
+    - createTime: 114.37375
+      beatType: 0
+    - createTime: 114.916176
+      beatType: 0
+    - createTime: 115.699974
+      beatType: 0
+    - createTime: 116.43222
+      beatType: 0
+    - createTime: 117.12591
+      beatType: 0
+    - createTime: 117.88926
+      beatType: 0
+    - createTime: 118.67942
+      beatType: 0
+    - createTime: 119.4615
+      beatType: 0
+    - createTime: 120.293434
+      beatType: 0
+    - createTime: 121.08474
+      beatType: 0
+    - createTime: 122.36373
+      beatType: 0

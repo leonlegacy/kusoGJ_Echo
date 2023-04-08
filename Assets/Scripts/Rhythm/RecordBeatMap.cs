@@ -28,8 +28,13 @@ namespace Rhythm
 
 		private void Update()
 		{
-			if(!isRecord || musicData == null) return;
+			if(Input.GetKeyUp(KeyCode.R))
+			{
+				Record();
+				return;
+			}
 
+			if(!isRecord || musicData == null) return;
 			if(Input.anyKeyDown)
 			{
 				lastCreateTime = Time.time-lastTime + lastCreateTime;
