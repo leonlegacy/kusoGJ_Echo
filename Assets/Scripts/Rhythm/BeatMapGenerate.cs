@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using CliffLeeCL;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,10 +36,7 @@ namespace Rhythm{
 
 		private void Awake(){
 			beatPool = new ObjectPool<BeatGO>(InstantiateBeat,OnGenerateBeat);
-		}
-
-		private void Start(){
-			Generate();
+			EventManager.Instance.onMusicPlay += Generate;
 		}
 
 		public void Generate(int musicId = 0){

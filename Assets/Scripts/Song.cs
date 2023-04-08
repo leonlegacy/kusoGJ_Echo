@@ -10,4 +10,5 @@ public class Song : SerializedScriptableObject
     public string songName;
     public float duration;
     public int beatsPerMinute;
+    public int songId;
 }
