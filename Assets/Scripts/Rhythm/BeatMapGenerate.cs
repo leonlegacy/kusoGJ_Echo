@@ -1,5 +1,9 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -15,6 +19,9 @@ namespace Rhythm{
 		private BeatGO beatGo;
 
 		[SerializeField]
+		private float beatSpeed = 2f;
+
+		[SerializeField]
 		private MusicDatas musicDatas;
 
 		private MusicData musicData;
@@ -22,7 +29,20 @@ namespace Rhythm{
 		private ObjectPool<BeatGO> beatPool;
 
 		private void Awake(){
-			beatPool = new ObjectPool<BeatGO>(() => Instantiate(beatGo,spawnRoot.position,Quaternion.identity));
+			beatPool = new ObjectPool<BeatGO>(InstantiateBeat,OnGenerateBeat);
+		}
+
+		private void OnGenerateBeat(BeatGO beat)
+		{
+			// 计算控制点的位置
+			var startPos = spawnRoot.position;
+			var endPos = targetRoot.position;
+			var height = 2f;
+			Vector3 controlPoint = startPos + (endPos - startPos) / 2f + Vector3.up * height;
+
+			// 沿着抛物线移动物体
+			beat.transform.DOPath(new Vector3[] { startPos, controlPoint, endPos }, beatSpeed, PathType.CatmullRom)
+					 .SetEase(Ease.Linear);
 		}
 
 		private void Start(){
@@ -44,6 +64,10 @@ namespace Rhythm{
 				lastSpawnTime = beat.createTime;
 				beatPool.Get();
 			}
+		}
+
+		private BeatGO InstantiateBeat() {
+			return Instantiate(beatGo,spawnRoot.position,Quaternion.identity);
 		}
 	}
 }
