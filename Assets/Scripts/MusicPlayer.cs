@@ -29,7 +29,7 @@ public class MusicPlayer : MonoBehaviour {
 
     void Start()
     {
-        Song song = new Song("TheLightDemoVersion", 140, true);
+        Song song = new Song("TheLightDemoVersion", 140);
         //float beatPeriod = 60.0f / song.beatsPerMinute;
         /*
         song.notes.Add(new Note(Color.red, Color.black, beatPeriod * 2.0f, 0));
