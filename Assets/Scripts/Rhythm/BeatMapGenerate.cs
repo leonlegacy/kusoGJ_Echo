@@ -59,12 +59,12 @@ namespace Rhythm{
 
 		private void OnGenerateBeat(BeatGO beat)
 		{
-			beat.transform.position = spawnRoot.position;
 			// 计算控制点的位置
 			var startPos = spawnRoot.position;
 			var endPos = targetRoot.position;
 			var height = 2f;
 			Vector3 controlPoint = startPos + (endPos - startPos) / 2f + Vector3.up * height;
+			beat.transform.position = startPos;
 			// 拋物線移動
 			var curvePath = beat.transform.DOPath(new[] { startPos, controlPoint, endPos }, beatSpeed, PathType.CatmullRom)
 								.SetEase(Ease.Linear);
