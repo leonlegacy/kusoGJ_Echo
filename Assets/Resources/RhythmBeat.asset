@@ -21,4 +21,12 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  rhythmBeats: []
+  musics:
+  - musicId: 0
+    beatMap:
+    - createTime: 0
+    - createTime: 2
+    - createTime: 3
+    - createTime: 4
+    - createTime: 5
+    - createTime: 5
