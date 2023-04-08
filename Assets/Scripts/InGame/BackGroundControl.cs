@@ -32,7 +32,7 @@ namespace CliffLeeCL.InGame
 				{
 					if(scoreManager.CurrentScore <= scoreManager.TotalScore / 3 * 2)
 					{
-						Debug.Log($"觀眾掰掰");
+						EventManager.Instance.OnStopAudience();
 						stage += 1;
 					}
 					break;

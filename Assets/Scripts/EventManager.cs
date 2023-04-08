@@ -47,6 +47,7 @@ namespace CliffLeeCL
 
         public event Action<int> onMusicPlay;
 
+        public event Action onStopAudience;
         public void OnGameStart()
         {
             onGameStart?.Invoke();
@@ -75,6 +76,11 @@ namespace CliffLeeCL
         public void OnMusicPlay(int musicId = 0)
         {
             onMusicPlay?.Invoke(musicId);
+        }
+
+        public void OnStopAudience()
+        {
+            onStopAudience?.Invoke();
         }
     }
 }
