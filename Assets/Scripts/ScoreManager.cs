@@ -1,4 +1,5 @@
 using UnityEngine;
+using CliffLeeCL;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,7 +11,7 @@ public enum HitType
     Bad
 }
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : SingletonMono<ScoreManager>
 {
     public float CurrentScore { get; set; }
     public int PerfectHits { get; set; }    // 1000/41 = 100% of a note
@@ -42,6 +43,7 @@ public class ScoreManager : MonoBehaviour
 
     public void HitToScore(HitType type)
     {
+        //Called when a note is hit.
         float scored, scoreRatio;
 
         switch(type)
