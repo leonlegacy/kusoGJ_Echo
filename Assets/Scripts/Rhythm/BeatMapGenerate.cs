@@ -46,7 +46,7 @@ namespace Rhythm{
 		}
 
 		private IEnumerator GenerateCoroutine(){
-			float lastSpawnTime = 0;
+			float lastSpawnTime = inSpeed;
 
 			foreach (var beat in musicData.beatMap){
 				yield return new WaitForSeconds(beat.createTime - lastSpawnTime);
