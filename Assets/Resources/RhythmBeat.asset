@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   musics:
-  - musicId: 0
+  - musicId: 1
     beatMap:
     - createTime: 2.6105933
       beatType: 0

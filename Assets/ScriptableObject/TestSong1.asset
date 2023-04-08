@@ -25,3 +25,4 @@ MonoBehaviour:
   songName: TestSong1
   duration: 0
   beatsPerMinute: 0
+  songId: 1
