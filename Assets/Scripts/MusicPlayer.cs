@@ -29,7 +29,6 @@ public class MusicPlayer : MonoBehaviour {
 
     void Start()
     {
-        Song song = new Song("TheLightDemoVersion", 140, true);
         //float beatPeriod = 60.0f / song.beatsPerMinute;
         /*
         song.notes.Add(new Note(Color.red, Color.black, beatPeriod * 2.0f, 0));
@@ -46,7 +45,6 @@ public class MusicPlayer : MonoBehaviour {
         song.notes.Add(new Note(Color.cyan, Color.black, beatPeriod * 22.0f, 2));
         song.notes.Add(new Note(Color.cyan, Color.black, beatPeriod * 24.0f, 2));
         */
-        songs.Add(song);
 
         //EventManager.instance.onGameStart += OnGameStart;
         //EventManager.instance.onGameRestart += OnGameRestart;
