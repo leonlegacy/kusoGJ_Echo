@@ -26,12 +26,11 @@ namespace CliffLeeCL.InGame
 		private void OnScoredChange()
 		{
 			var scoreManager = ScoreManager.Instance;
-
 			switch(stage)
 			{
 				case 0:
 				{
-					if(scoreManager.CurrentScore <= scoreManager.TotalScore / 3)
+					if(scoreManager.CurrentScore <= scoreManager.TotalScore / 3 * 2)
 					{
 						Debug.Log($"觀眾掰掰");
 						stage += 1;
