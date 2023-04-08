@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CliffLeeCL;
 
 /*
 
@@ -13,11 +14,20 @@ A level should have contain ScoreManager.cs to manage scores.
 
 public class GameManager : MonoBehaviour
 {
-    ScoreManager loadedScoreManager;
-
     public void LoadLevel()
     {
+        
+    }
 
-        loadedScoreManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ScoreManager>();
+    public void GameStart()
+    {
+        //Need to LoadLevel() to get the data a level needed first.
+        //Start a game, play Audio and start sending notes.
+        EventManager.Instance.OnGameStart();
+    }
+
+    public void GameFinish()
+    {
+
     }
 }

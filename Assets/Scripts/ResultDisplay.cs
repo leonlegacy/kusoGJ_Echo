@@ -17,13 +17,8 @@ public class ResultDisplay : MonoBehaviour
     public void DisplayResult()
     {
         scoreText.text = scoreManager.TotalScore.ToString();
-        perfectText.text = scoreManager.PerfectHits.ToString();
+        perfectText.text = scoreManager.TotalNotes.ToString();
         goodText.text = scoreManager.GoodHits.ToString();
         badText.text = scoreManager.BadHits.ToString();
-    }
-
-    public void GameStart()
-    {
-        //Start the main game.
     }
 }
