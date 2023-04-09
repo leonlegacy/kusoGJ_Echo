@@ -16,8 +16,19 @@ A level should have contain ScoreManager.cs to manage scores.
 
  */
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonMono<GameManager>
 {
+
+    private void OnEnable()
+    {
+        EventManager.Instance.onNewGameLoad += LoadLevel;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.onNewGameLoad -= LoadLevel;
+    }
+
     public void LoadLevel()
     {
         //Display Result page.

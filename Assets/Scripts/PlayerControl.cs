@@ -21,12 +21,14 @@ public class PlayerControl : MonoBehaviour
     {
         EventManager.Instance.onNewGameLoad += LoadMusicDatas;
         EventManager.Instance.onMusicPlay += MusicTimerBegin;
+        EventManager.Instance.onBeatRecycle += NoteIndexCounter;
     }
 
     private void OnDisable()
     {
         EventManager.Instance.onNewGameLoad -= LoadMusicDatas;
         EventManager.Instance.onMusicPlay -= MusicTimerBegin;
+        EventManager.Instance.onBeatRecycle -= NoteIndexCounter;
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class PlayerControl : MonoBehaviour
     {
         noteAmnt = musicDatas.musics.Count;
         noteIndex = 0;
+        ScoreManager.Instance.TotalNotes = noteAmnt;
     }
 
     void MusicTimerBegin(Song _)
@@ -80,6 +83,11 @@ public class PlayerControl : MonoBehaviour
         else
             ScoreManager.Instance.HitToScore(HitType.Bad);
 
+        //noteIndex++;
+    }
+
+    void NoteIndexCounter()
+    {
         noteIndex++;
     }
 

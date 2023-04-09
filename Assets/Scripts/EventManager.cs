@@ -50,6 +50,7 @@ namespace CliffLeeCL
 
         public event Action onStopAudience;
         public event Action onBeatGenerate;
+        public event Action onBeatRecycle;
 
         public void OnGameStart()
         {
@@ -94,6 +95,11 @@ namespace CliffLeeCL
         public void OnBeatGenerate()
         {
             onBeatGenerate?.Invoke();
+        }
+
+        public void OnBeatRecycle()
+        {
+            onBeatRecycle?.Invoke();
         }
     }
 }

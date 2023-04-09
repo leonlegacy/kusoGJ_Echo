@@ -76,13 +76,15 @@ namespace Rhythm{
 			var moveToEnd = beat.transform.DOMoveX(15f, outSpeed).SetSpeedBased();
 
 			Sequence sequence = DOTween.Sequence();
-			var secondSeq = DOTween.Sequence().AppendInterval(0.2f).AppendCallback(()=>StartCoroutine(SecondCoroutine()));
+			var secondSeq = DOTween.Sequence().AppendInterval(0.2f).AppendCallback(()=>StartCoroutine(CallBeatRecycle()));
 			sequence.Append(curvePath).Append(moveToEnd).Join(secondSeq).AppendCallback(()=>ReleaseBeat(beat));
 		}
 
-		private IEnumerator SecondCoroutine()
+		private IEnumerator CallBeatRecycle()
 		{
 			yield return null;
+			EventManager.Instance.OnBeatRecycle();
+
 		}
 		private void ReleaseBeat(BeatGO beat)
 		{
