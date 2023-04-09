@@ -111,6 +111,6 @@ MonoBehaviour:
   spawnRoot: {fileID: 1562200342309386841}
   targetRoot: {fileID: 1562200342553797490}
   beatGo: {fileID: 2571970196513314812, guid: 74c09295e9dd0c4459db8643589cbcf4, type: 3}
-  inSpeed: 2
-  outSpeed: 2
+  inSpeed: 1.25
+  outSpeed: 5
   musicDatas: {fileID: 11400000, guid: d2f52fb9f0781de41928532792792781, type: 2}
