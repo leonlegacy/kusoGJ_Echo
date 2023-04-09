@@ -9,6 +9,12 @@ namespace CliffLeeCL
 	public class EndGameScene: MonoBehaviour
 	{
 		[SerializeField]
+		private Button backTitleBtn;
+
+		[SerializeField]
+		private Button gameStartBtn;
+		
+		[SerializeField]
 		private Button exitBtn;
 
 		[SerializeField]
@@ -20,14 +26,29 @@ namespace CliffLeeCL
 		[SerializeField]
 		private List<Button> NonEffectBtn;
 
+		[SerializeField]
+		private GameObject EndPanel;
+		
 		private void Awake()
 		{
 			exitBtn.onClick.AddListener(ExitGame);
-			startBtn.onClick.AddListener(StartGame);
+			startBtn.onClick.AddListener(CloseTitle);
+			backTitleBtn.onClick.AddListener(BackTitle);
+			gameStartBtn.onClick.AddListener(StartGame);
 			foreach(var button in NonEffectBtn)
 			{
 				button.onClick.AddListener(NormalBtnClickSound);
 			}
+		}
+
+		private void CloseTitle()
+		{
+			EndPanel.SetActive(false);
+		}
+
+		private void BackTitle()
+		{
+			EndPanel.SetActive(true);
 		}
 
 		private void StartGame()
