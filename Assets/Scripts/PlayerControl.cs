@@ -11,6 +11,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     AudioSource musicSource;
 
+    [SerializeField]
+    Animator boomRed;
+
     int noteAmnt = 1, noteIndex = 0;
 
     float musicTime = 0, hitTime = 0;
@@ -75,6 +78,8 @@ public class PlayerControl : MonoBehaviour
          *  
          *  //Event to hitable first
          */
+        boomRed.StopPlayback();
+        boomRed.Play("Boom");
 
         hitTime = musicTime;
         float noteTime = musicDatas.musics[0].beatMap[noteIndex].createTime;

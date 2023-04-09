@@ -77,6 +77,7 @@ public class ScoreManager : SingletonMono<ScoreManager>
 
         scored = (TotalScore / TotalNotes) * scoreRatio;
         CurrentScore -= scored;
+        if (CurrentScore < 0) CurrentScore = 0;
         EventManager.Instance.OnPlayerScored();
     }
 }
