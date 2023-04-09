@@ -24,5 +24,7 @@ MonoBehaviour:
   audioName: 1
   songName: TestSong1
   duration: 0
+  forwardBeatOffset: 0.05
+  reversedBeatOffset: 0.01
   beatsPerMinute: 105
   songId: 1
