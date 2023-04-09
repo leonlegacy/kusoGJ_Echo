@@ -13,8 +13,8 @@ namespace CliffLeeCL
         public enum AudioName
         {
             ButtonClicked,
-            GameSong1,
-            EnemyDead2,
+            Unity,
+            Miku,
             EnemyDead3,
             EnemySlash,
             Fail,
@@ -44,7 +44,7 @@ namespace CliffLeeCL
             }
         }
 
-        public AudioSource GetSoucre()
+        public AudioSource GetSource()
         {
             for (int i = 0; i < pooledSoundSources.Count; i++)
             {
@@ -112,7 +112,7 @@ namespace CliffLeeCL
             {
                 if (audioClips[(int)clipName])
                 {
-                    AudioSource source = GetSoucre();
+                    AudioSource source = GetSource();
 
                     source.pitch = 1.0f;
                     source.PlayOneShot(audioClips[(int)clipName]);
@@ -132,7 +132,7 @@ namespace CliffLeeCL
             {
                 if (audioClips[(int)clipName])
                 {
-                    AudioSource source = GetSoucre();
+                    AudioSource source = GetSource();
 
                     source.pitch = randomPitch;
                     source.PlayOneShot(audioClips[(int)clipName]);
@@ -150,7 +150,7 @@ namespace CliffLeeCL
 
             if (audioClips[(int)clipIndex])
             {
-                AudioSource source = GetSoucre();
+                AudioSource source = GetSource();
 
                 source.pitch = 1.0f;
                 source.PlayOneShot(audioClips[(int)clipIndex]);
@@ -168,7 +168,7 @@ namespace CliffLeeCL
 
             if (audioClips[(int)clipIndex])
             {
-                AudioSource source = GetSoucre();
+                AudioSource source = GetSource();
 
                 source.pitch = randomPitch;
                 source.PlayOneShot(audioClips[(int)clipIndex]);
