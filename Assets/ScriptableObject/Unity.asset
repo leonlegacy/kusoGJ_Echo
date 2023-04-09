@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bc62a0cf90ff0045ac817307e4444d7, type: 3}
-  m_Name: TestSong1
+  m_Name: Unity
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   audioName: 1
-  songName: TestSong1
+  songName: Unity
   duration: 0
   forwardBeatOffset: 0.05
   reversedBeatOffset: 0.01
