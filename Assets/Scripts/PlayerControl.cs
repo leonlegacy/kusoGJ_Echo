@@ -35,21 +35,22 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         musicTime += Time.deltaTime;
-        Debug.Log(musicTime);
+        //Debug.Log(musicTime);
         if (Input.GetKeyDown(KeyCode.J))
             CheckNoteHit();
     }
 
     void LoadMusicDatas()
     {
-        noteAmnt = musicDatas.musics.Count;
+        
         noteIndex = 0;
-        ScoreManager.Instance.TotalNotes = noteAmnt;
     }
 
     void MusicTimerBegin(Song _)
     {
         musicTime = 0;
+        noteAmnt = musicDatas.musics[0].beatMap.Count;
+        ScoreManager.Instance.TotalNotes = noteAmnt;
     }
 
     void CheckNoteHit()
@@ -71,14 +72,16 @@ public class PlayerControl : MonoBehaviour
          *  TH = 0.2f
          *  
          *  //How to check miss?
+         *  
+         *  //Event to hitable first
          */
 
         hitTime = musicTime;
         float noteTime = musicDatas.musics[0].beatMap[noteIndex].createTime;
         float diffTime = Mathf.Abs(hitTime - noteTime);
-        if (diffTime < 0.2f)
+        if (diffTime < 0.2f/2)
             ScoreManager.Instance.HitToScore(HitType.Perfect);
-        else if (0.2f <= diffTime && diffTime <= 0.5f)
+        else if (0.2f/2 <= diffTime && diffTime <= 0.5f/2)
             ScoreManager.Instance.HitToScore(HitType.Good);
         else
             ScoreManager.Instance.HitToScore(HitType.Bad);
