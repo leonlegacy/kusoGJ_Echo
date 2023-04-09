@@ -58,7 +58,8 @@ namespace Rhythm
 
 				if(musicData == null)
 				{
-					musicDatas.musics.Add(new MusicData() { musicId = index, beatMap = new List<Beat>() });
+					musicData = new MusicData() { musicId = index, beatMap = new List<Beat>() };
+					musicDatas.musics.Add(musicData);
 				}
 				else
 				{
