@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,10 +14,20 @@ namespace CliffLeeCL
 		[SerializeField]
 		private Button startBtn;
 
+		[SerializeField]
+		private AudioSource audio;
+
+		[SerializeField]
+		private List<Button> NonEffectBtn;
+
 		private void Awake()
 		{
 			exitBtn.onClick.AddListener(ExitGame);
 			startBtn.onClick.AddListener(StartGame);
+			foreach(var button in NonEffectBtn)
+			{
+				button.onClick.AddListener(NormalBtnClickSound);
+			}
 		}
 
 		private void StartGame()
@@ -27,6 +38,11 @@ namespace CliffLeeCL
 		private void ExitGame()
 		{
 			Application.Quit();
+		}
+
+		private void NormalBtnClickSound()
+		{
+			audio.Play();
 		}
 	}
 }
