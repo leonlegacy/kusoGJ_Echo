@@ -52,7 +52,8 @@ namespace Rhythm{
 				yield return new WaitForSeconds(beat.createTime - lastSpawnTime);
 
 				lastSpawnTime = beat.createTime;
-				beatPool.Get();
+				var go = beatPool.Get();
+				go.Init(beat.beatType);
 				EventManager.Instance.OnBeatGenerate();
 			}
 		}
