@@ -75,7 +75,7 @@ public class MusicPlayer : SerializedMonoBehaviour {
             AudioManager.Instance.PlayMusic(songNameToSongDict[songName].audioName, songDelayTime);
         lastPlayedDspTime = AudioSettings.dspTime + songDelayTime;
         isSongPlayed = true;
-        EventManager.Instance.OnMusicPlay(songNameToSongDict[songName].songId);
+        EventManager.Instance.OnMusicPlay(songNameToSongDict[songName]);
     }
 
     public double StopSong()

@@ -46,7 +46,7 @@ namespace CliffLeeCL
 
         public event Action onNewGameLoad;
 
-        public event Action<int> onMusicPlay;
+        public event Action<Song> onMusicPlay;
 
         public event Action onStopAudience;
         public event Action onBeatGenerate;
@@ -76,9 +76,9 @@ namespace CliffLeeCL
             onPlayerScored?.Invoke(); 
         }
 
-        public void OnMusicPlay(int musicId = 0)
+        public void OnMusicPlay(Song song)
         {
-            onMusicPlay?.Invoke(musicId);
+            onMusicPlay?.Invoke(song);
         }
 
         public void OnStopAudience()

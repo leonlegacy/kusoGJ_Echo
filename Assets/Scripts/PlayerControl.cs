@@ -44,7 +44,7 @@ public class PlayerControl : MonoBehaviour
         noteIndex = 0;
     }
 
-    void MusicTimerBegin(int _)
+    void MusicTimerBegin(Song _)
     {
         musicTime = 0;
     }

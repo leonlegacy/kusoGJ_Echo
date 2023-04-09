@@ -39,8 +39,8 @@ namespace Rhythm{
 			EventManager.Instance.onMusicPlay += Generate;
 		}
 
-		public void Generate(int musicId = 0){
-			musicData = musicDatas.musics.Find(x => x.musicId == musicId);
+		public void Generate(Song song){
+			musicData = musicDatas.musics.Find(x => x.musicId == song.songId);
 			musicData.Sort();
 			StartCoroutine(GenerateCoroutine());
 		}
