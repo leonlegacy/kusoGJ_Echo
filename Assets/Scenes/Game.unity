@@ -724,7 +724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3535490085503860206, guid: fd61605b8bfde9746849cb837f574ba3, type: 3}
       propertyPath: songDelayTime
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3535490085503860206, guid: fd61605b8bfde9746849cb837f574ba3, type: 3}
       propertyPath: serializationData.Prefab
@@ -2131,6 +2131,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 918742687}
     - target: {fileID: 9166418639946560918, guid: f7156b8d5aad58047bc70a9de5300818, type: 3}
+      propertyPath: setting.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166418639946560918, guid: f7156b8d5aad58047bc70a9de5300818, type: 3}
       propertyPath: pchan.Array.data[0]
       value: 
       objectReference: {fileID: 744475718}
@@ -2150,6 +2154,18 @@ PrefabInstance:
       propertyPath: pchan.Array.data[4]
       value: 
       objectReference: {fileID: 1577132910}
+    - target: {fileID: 9166418639946560918, guid: f7156b8d5aad58047bc70a9de5300818, type: 3}
+      propertyPath: setting.Array.data[3].type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166418639946560918, guid: f7156b8d5aad58047bc70a9de5300818, type: 3}
+      propertyPath: setting.Array.data[2].percent
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166418639946560918, guid: f7156b8d5aad58047bc70a9de5300818, type: 3}
+      propertyPath: setting.Array.data[3].percent
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9166418639946560919, guid: f7156b8d5aad58047bc70a9de5300818, type: 3}
       propertyPath: m_Name
       value: BackgroundControl
