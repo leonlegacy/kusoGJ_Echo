@@ -552,7 +552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicDatas: {fileID: 11400000, guid: d2f52fb9f0781de41928532792792781, type: 2}
-  index: 0
+  index: 2
   recordBtn: {fileID: 522010333}
 --- !u!1 &1356552726
 GameObject:

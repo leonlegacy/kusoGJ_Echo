@@ -48,7 +48,7 @@ public class MusicPlayer : SerializedMonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             PlaySong(currentSongName, false);
         }
