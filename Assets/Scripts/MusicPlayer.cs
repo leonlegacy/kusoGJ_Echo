@@ -58,6 +58,7 @@ public class MusicPlayer : SerializedMonoBehaviour {
             PlaySong(currentSongName, true);
         }
 
+
         if (isSongPlayed && !AudioManager.Instance.IsMusicPlaying())
         {
             isSongPlayed = false;

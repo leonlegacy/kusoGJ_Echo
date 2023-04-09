@@ -45,7 +45,17 @@ public class PlayerControl : MonoBehaviour
             CheckNoteHit(BeatType.Blue);
             AudioManager.Instance.PlaySound(AudioManager.AudioName.Hit_blue);
         }
-            
+        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ScoreManager.Instance.HitToScore(HitType.Perfect);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            EventManager.Instance.OnGameOver();
+            MusicPlayer.Instance.StopSong();
+        }
     }
 
     void LoadMusicDatas()
@@ -83,6 +93,9 @@ public class PlayerControl : MonoBehaviour
          *  
          *  //Event to hitable first
          */
+        if (currentMusicData == null)
+            return;
+        
         boomRed.StopPlayback();
         boomRed.Play("Boom");
         if(noteIndex < noteAmnt && currentMusicData.beatMap[noteIndex].beatType == beatType)
