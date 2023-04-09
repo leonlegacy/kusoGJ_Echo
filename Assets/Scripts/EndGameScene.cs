@@ -15,8 +15,8 @@ namespace CliffLeeCL
 
 		private void Awake()
 		{
-			exitBtn.onClick.AddListener(()=>ExitGame());
-			startBtn.onClick.AddListener(()=>StartGame());
+			exitBtn.onClick.AddListener(ExitGame);
+			startBtn.onClick.AddListener(StartGame);
 		}
 
 		private void StartGame()
