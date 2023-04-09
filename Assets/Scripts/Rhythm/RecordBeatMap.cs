@@ -35,10 +35,11 @@ namespace Rhythm
 			}
 
 			if(!isRecord || musicData == null) return;
+
 			if(Input.anyKeyDown)
 			{
-				lastCreateTime = Time.time-lastTime + lastCreateTime;
-				musicData.beatMap.Add(new Beat(){createTime = lastCreateTime});
+				lastCreateTime = Time.time - lastTime + lastCreateTime;
+				musicData.beatMap.Add(new Beat() { createTime = lastCreateTime });
 				lastTime = Time.time;
 			}
 		}
@@ -48,7 +49,16 @@ namespace Rhythm
 			if(!isRecord)
 			{
 				musicData = musicDatas.musics.Find(x => x.musicId == index);
-				musicData.beatMap = new List<Beat>();
+
+				if(musicData == null)
+				{
+					musicDatas.musics.Add(new MusicData() { musicId = index, beatMap = new List<Beat>() });
+				}
+				else
+				{
+					musicData.beatMap = new List<Beat>();
+				}
+
 				isRecord = true;
 				lastTime = Time.time;
 				lastCreateTime = 0;
