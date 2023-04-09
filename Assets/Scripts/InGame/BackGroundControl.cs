@@ -12,6 +12,12 @@ namespace CliffLeeCL.InGame
 		[SerializeField]
 		private List<Sprite> spriteList;
 
+		[SerializeField]
+		private List<BackgroundSetting> setting;
+
+		[SerializeField]
+		private List<PchanGO> pchan;
+
 		private int stage;
 		private void Awake()
 		{
@@ -26,26 +32,38 @@ namespace CliffLeeCL.InGame
 		private void OnScoredChange()
 		{
 			var scoreManager = ScoreManager.Instance;
-			switch(stage)
+
+			if(stage >setting.Count)
 			{
-				case 0:
+				return;
+			}
+
+			if(scoreManager.CurrentScore <= scoreManager.TotalScore *setting[stage].percent)
+			{
+				switch(setting[stage].type)
 				{
-					if(scoreManager.CurrentScore <= scoreManager.TotalScore / 3 * 2)
-					{
+					case BackGroundType.Audience:
 						EventManager.Instance.OnStopAudience();
-						stage += 1;
-					}
-					break;
-				}
-				case 1:
-				{
-					if(scoreManager.CurrentScore <= scoreManager.TotalScore / 2)
-					{
+						break;
+					case BackGroundType.Pchan1:
+						pchan[0].Leave();
+						pchan[4].Leave();
+						break;
+					case BackGroundType.Pchan2:
+						pchan[1].Leave();
+						pchan[3].Leave();
+						break;
+					case BackGroundType.Pchan3:
+						pchan[2].Leave();
+						break;
+					case BackGroundType.BlackBg:
 						background.sprite = spriteList[1];
-						stage += 1;
-					}
-					break;
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
 				}
+
+				stage += 1;
 			}
 		}
 	}
