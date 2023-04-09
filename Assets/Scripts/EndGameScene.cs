@@ -32,7 +32,8 @@ namespace CliffLeeCL
 
 		private void StartGame()
 		{
-			SceneManager.LoadScene("Game");
+			//SceneManager.LoadScene("Game");
+			EventManager.Instance.OnNewGame();
 		}
 
 		private void ExitGame()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using CliffLeeCL;
 
 #if UNITY_EDITOR
@@ -22,11 +23,20 @@ public class GameManager : SingletonMono<GameManager>
     private void OnEnable()
     {
         EventManager.Instance.onNewGameLoad += LoadLevel;
+        EventManager.Instance.onGameOver += (() => StartCoroutine(GameOverIE()));
+        EventManager.Instance.onNewGame += (() => StartCoroutine(NewGameIE()));
     }
 
     private void OnDisable()
     {
         EventManager.Instance.onNewGameLoad -= LoadLevel;
+        EventManager.Instance.onGameOver -= (() => StartCoroutine(GameOverIE()));
+        EventManager.Instance.onNewGame -= (() => StartCoroutine(NewGameIE()));
+    }
+
+    private void Awake()
+    {
+        SceneManager.LoadScene("Game", LoadSceneMode.Additive);
     }
 
     public void LoadLevel()
@@ -42,11 +52,27 @@ public class GameManager : SingletonMono<GameManager>
         //Start a game, play Audio and start sending notes.
         EventManager.Instance.OnGameStart();
     }
-
-    public void GameFinish()
+    
+    IEnumerator GameOverIE()
     {
-
+        yield return null;
+        SceneManager.LoadScene("Trans", LoadSceneMode.Additive);
+        yield return new WaitForSeconds(1.1f);
+        SceneManager.UnloadScene("Game");
+        SceneManager.LoadScene("EndScene", LoadSceneMode.Additive);
     }
+
+    IEnumerator NewGameIE()
+    {
+        yield return null;
+        SceneManager.UnloadScene("Trans");
+        SceneManager.LoadScene("Trans", LoadSceneMode.Additive);
+        yield return new WaitForSeconds(1.1f);
+        SceneManager.UnloadScene("EndScene");
+        SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+    }
+
+    
 }
 
 //Debug UI

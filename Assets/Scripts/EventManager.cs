@@ -44,6 +44,8 @@ namespace CliffLeeCL
         /// <seealso cref="OnPlayerScored"/>
         public event Action onPlayerScored;
 
+
+        public event Action onNewGame;
         public event Action onNewGameLoad;
 
         public event Action<Song> onMusicPlay;
@@ -90,6 +92,11 @@ namespace CliffLeeCL
         public void OnNewGameLoad()
         {
             onNewGameLoad?.Invoke();
+        }
+
+        public void OnNewGame()
+        {
+            onNewGame?.Invoke();
         }
 
         public void OnBeatGenerate()
