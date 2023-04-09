@@ -31,12 +31,13 @@ namespace CliffLeeCL
         /// The event is called when game start.
         /// </summary>
         public event Action onGameStart;
-        
+
         /// <summary>
         /// The event is called when game over.
         /// </summary>
         /// <seealso cref="OnGameOver"/>
         public event Action onGameOver;
+
         /// <summary>
         /// The event is called when a player scored. Only can call on the server(SyncEvent).
         /// </summary>
@@ -48,6 +49,8 @@ namespace CliffLeeCL
         public event Action<int> onMusicPlay;
 
         public event Action onStopAudience;
+        public event Action onBeatGenerate;
+
         public void OnGameStart()
         {
             onGameStart?.Invoke();
@@ -86,6 +89,11 @@ namespace CliffLeeCL
         public void OnNewGameLoad()
         {
             onNewGameLoad?.Invoke();
+        }
+
+        public void OnBeatGenerate()
+        {
+            onBeatGenerate?.Invoke();
         }
     }
 }

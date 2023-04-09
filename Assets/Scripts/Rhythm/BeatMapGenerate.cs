@@ -53,6 +53,7 @@ namespace Rhythm{
 
 				lastSpawnTime = beat.createTime;
 				beatPool.Get();
+				EventManager.Instance.OnBeatGenerate();
 			}
 		}
 
@@ -75,9 +76,14 @@ namespace Rhythm{
 			var moveToEnd = beat.transform.DOMoveX(15f, outSpeed).SetSpeedBased();
 
 			Sequence sequence = DOTween.Sequence();
-			sequence.Append(curvePath).Append(moveToEnd).AppendCallback(()=>ReleaseBeat(beat));
+			var secondSeq = DOTween.Sequence().AppendInterval(0.2f).AppendCallback(()=>StartCoroutine(SecondCoroutine()));
+			sequence.Append(curvePath).Append(moveToEnd).Join(secondSeq).AppendCallback(()=>ReleaseBeat(beat));
 		}
 
+		private IEnumerator SecondCoroutine()
+		{
+			yield return null;
+		}
 		private void ReleaseBeat(BeatGO beat)
 		{
 			beatPool.Release(beat);
