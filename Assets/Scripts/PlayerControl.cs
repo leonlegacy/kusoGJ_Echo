@@ -2,23 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CliffLeeCL;
+using Rhythm;
 
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField]
     Rhythm.MusicDatas musicDatas;
-
-    [SerializeField]
-    AudioSource musicSource;
-
     [SerializeField]
     Animator boomRed;
 
-    Song currentSong;
+    MusicData currentMusicData;
     int noteAmnt = 1, noteIndex = 0;
-
-    float musicTime = 0, hitTime = 0;
-
+    double musicStartDspTime = 0, hitDspTime = 0;
     bool hasMiss = false, hasHit = false;
 
     private void OnEnable()
@@ -38,7 +33,6 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        musicTime += Time.deltaTime;
         //Debug.Log(musicTime);
         if (Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.J))
         {
@@ -61,9 +55,9 @@ public class PlayerControl : MonoBehaviour
 
     void MusicTimerBegin(Song song)
     {
-        musicTime = 0;
-        noteAmnt = musicDatas.musics[0].beatMap.Count;
-        currentSong = song;
+        musicStartDspTime = AudioSettings.dspTime;
+        currentMusicData = musicDatas.musics.Find(x => x.musicId == song.songId); 
+        noteAmnt = currentMusicData.beatMap.Count;
         ScoreManager.Instance.TotalNotes = noteAmnt;
     }
 
@@ -91,12 +85,11 @@ public class PlayerControl : MonoBehaviour
          */
         boomRed.StopPlayback();
         boomRed.Play("Boom");
-        var currentMusicData = musicDatas.musics.Find(x => x.musicId == currentSong.songId);
         if(noteIndex < noteAmnt && currentMusicData.beatMap[noteIndex].beatType == beatType)
         {
-            hitTime = musicTime;
-            float noteTime = currentMusicData.beatMap[noteIndex].createTime;
-            float diffTime = Mathf.Abs(hitTime - noteTime);
+            hitDspTime = AudioSettings.dspTime - musicStartDspTime;
+            var noteTime = currentMusicData.beatMap[noteIndex].createTime;
+            var diffTime = Mathf.Abs((float)hitDspTime - noteTime);
             if (diffTime < 0.15f)
             {
                 ScoreManager.Instance.HitToScore(HitType.Perfect);
