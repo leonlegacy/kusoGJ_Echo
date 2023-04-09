@@ -15,8 +15,8 @@ namespace CliffLeeCL
             ButtonClicked,
             Unity,
             Miku,
-            EnemyDead3,
-            EnemySlash,
+            Hit_blue,
+            Hit_red,
             Fail,
             Pass
         }

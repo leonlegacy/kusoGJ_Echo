@@ -41,9 +41,17 @@ public class PlayerControl : MonoBehaviour
         musicTime += Time.deltaTime;
         //Debug.Log(musicTime);
         if (Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.J))
+        {
             CheckNoteHit(BeatType.Red);
+            AudioManager.Instance.PlaySound(AudioManager.AudioName.Hit_red);
+
+        }
         else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.K))
+        {
             CheckNoteHit(BeatType.Blue);
+            AudioManager.Instance.PlaySound(AudioManager.AudioName.Hit_blue);
+        }
+            
     }
 
     void LoadMusicDatas()
