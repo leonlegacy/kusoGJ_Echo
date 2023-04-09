@@ -77,7 +77,7 @@ namespace Rhythm{
 			var moveToEnd = beat.transform.DOMoveX(15f, outSpeed).SetSpeedBased();
 
 			Sequence sequence = DOTween.Sequence();
-			var secondSeq = DOTween.Sequence().AppendInterval(0.2f).AppendCallback(()=>StartCoroutine(CallBeatRecycle()));
+			var secondSeq = DOTween.Sequence().AppendInterval(0.1f).AppendCallback(()=>StartCoroutine(CallBeatRecycle()));
 			sequence.Append(curvePath).Append(moveToEnd).Join(secondSeq).AppendCallback(()=>ReleaseBeat(beat));
 		}
 

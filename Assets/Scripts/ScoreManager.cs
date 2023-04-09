@@ -29,6 +29,9 @@ public class ScoreManager : SingletonMono<ScoreManager>
 
     public float BadScoreRatio = 0f;
 
+    [SerializeField]
+    Animator feedback;
+
     private void Start()
     {
         NewGame();
@@ -46,27 +49,28 @@ public class ScoreManager : SingletonMono<ScoreManager>
     {
         //Called when a note is hit.
         float scored, scoreRatio;
-
+        feedback.StopPlayback();
         switch(type)
         {
             case HitType.Perfect:
                 scoreRatio = PerfectScoreRatio;
                 PerfectHits += 1;
                 print("Perfect");
+                feedback.Play("HitPerfect");
                 break;
 
             case HitType.Good:
                 scoreRatio = GoodScoreRatio;
                 GoodHits += 1;
-
                 print("Good");
+                feedback.Play("HitGood");
                 break;
 
             case HitType.Bad:
                 scoreRatio = BadScoreRatio;
                 BadHits += 1;
-
                 print("Bad");
+                feedback.Play("HitBad");
                 break;
 
             default:

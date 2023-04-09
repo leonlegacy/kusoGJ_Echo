@@ -18,7 +18,7 @@ public class PlayerControl : MonoBehaviour
 
     float musicTime = 0, hitTime = 0;
 
-    bool hasMiss = false;
+    bool hasMiss = false, hasHit = false;
 
     private void OnEnable()
     {
@@ -39,7 +39,7 @@ public class PlayerControl : MonoBehaviour
     {
         musicTime += Time.deltaTime;
         //Debug.Log(musicTime);
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyUp(KeyCode.J))
             CheckNoteHit();
     }
 
@@ -80,16 +80,27 @@ public class PlayerControl : MonoBehaviour
          */
         boomRed.StopPlayback();
         boomRed.Play("Boom");
+        if(noteIndex<noteAmnt)
+        {
+            hitTime = musicTime;
+            float noteTime = musicDatas.musics[0].beatMap[noteIndex].createTime;
+            float diffTime = Mathf.Abs(hitTime - noteTime);
+            if (diffTime < 0.15f)
+            {
+                ScoreManager.Instance.HitToScore(HitType.Perfect);
+            }
+            else if (0.15f < diffTime && diffTime <= 0.3f)
+            {
+                ScoreManager.Instance.HitToScore(HitType.Good);
 
-        hitTime = musicTime;
-        float noteTime = musicDatas.musics[0].beatMap[noteIndex].createTime;
-        float diffTime = Mathf.Abs(hitTime - noteTime);
-        if (diffTime < 0.2f/2)
-            ScoreManager.Instance.HitToScore(HitType.Perfect);
-        else if (0.2f/2 <= diffTime && diffTime <= 0.5f/2)
-            ScoreManager.Instance.HitToScore(HitType.Good);
-        else
-            ScoreManager.Instance.HitToScore(HitType.Bad);
+            }
+            else if (0.3f < diffTime)
+            {
+                ScoreManager.Instance.HitToScore(HitType.Bad);
+            }
+            //noteIndex++;
+            hasHit = true;
+        }
 
         //noteIndex++;
     }
@@ -97,12 +108,5 @@ public class PlayerControl : MonoBehaviour
     void NoteIndexCounter()
     {
         noteIndex++;
-    }
-
-    IEnumerator MissCheck()
-    {
-        yield return new WaitForSeconds(0.5f);
-        if (hasMiss)
-            noteIndex++;
     }
 }

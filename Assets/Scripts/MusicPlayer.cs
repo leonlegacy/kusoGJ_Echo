@@ -43,7 +43,7 @@ public class MusicPlayer : SerializedMonoBehaviour {
 
     void OnGameStart()
     {
-        PlaySong(currentSongName, false);
+        PlaySong(currentSongName, true);
     }
 
     void Update()
