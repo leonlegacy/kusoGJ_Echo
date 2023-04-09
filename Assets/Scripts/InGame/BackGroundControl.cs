@@ -33,7 +33,7 @@ namespace CliffLeeCL.InGame
 		{
 			var scoreManager = ScoreManager.Instance;
 
-			if(stage >setting.Count)
+			if(stage >=setting.Count)
 			{
 				return;
 			}
