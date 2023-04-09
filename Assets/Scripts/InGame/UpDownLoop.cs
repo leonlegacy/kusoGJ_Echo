@@ -17,7 +17,13 @@ namespace CliffLeeCL.InGame
 			EventManager.Instance.onStopAudience += StopAudience;
 		}
 
-		void StartAudience(Song song)
+        private void OnDisable()
+        {
+			EventManager.Instance.onMusicPlay -= StartAudience;
+			EventManager.Instance.onStopAudience -= StopAudience;
+		}
+
+        void StartAudience(Song song)
 		{
 			tween = transform.DOLocalMoveY(0.2f, song.BeatPeriod).SetDelay(song.reversedBeatOffset).SetLoops(-1, LoopType.Yoyo).SetEase(ease);
 		}
