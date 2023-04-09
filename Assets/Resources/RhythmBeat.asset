@@ -27,11 +27,11 @@ MonoBehaviour:
     - createTime: 2.6105933
       beatType: 0
     - createTime: 3.7270179
-      beatType: 0
+      beatType: 1
     - createTime: 4.644764
-      beatType: 0
+      beatType: 1
     - createTime: 5.665676
-      beatType: 0
+      beatType: 1
     - createTime: 6.816018
       beatType: 0
     - createTime: 7.84708
@@ -370,3 +370,13 @@ MonoBehaviour:
       beatType: 0
     - createTime: 122.36373
       beatType: 0
+  - musicId: 2
+    beatMap:
+    - createTime: 1.712187
+      beatType: 0
+    - createTime: 2.116944
+      beatType: 1
+    - createTime: 2.3130064
+      beatType: 0
+    - createTime: 2.48875
+      beatType: 1
