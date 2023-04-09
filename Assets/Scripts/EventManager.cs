@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace CliffLeeCL
@@ -81,6 +81,11 @@ namespace CliffLeeCL
         public void OnStopAudience()
         {
             onStopAudience?.Invoke();
+        }
+
+        public void OnNewGameLoad()
+        {
+            onNewGameLoad?.Invoke();
         }
     }
 }

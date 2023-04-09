@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6901794133182498910}
   - component: {fileID: 2737759980799587225}
   - component: {fileID: 2571970196513314812}
+  - component: {fileID: 5849940822396069813}
   m_Layer: 0
   m_Name: RedBeat
   m_TagString: Untagged
@@ -98,6 +99,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6b4201df1542469e5bc8edf6a1a62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &5849940822396069813
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5976944648487810939}
+  m_Enabled: 1
+  m_SortingLayerID: -466544693
+  m_SortingLayer: 1
+  m_SortingOrder: 1
 --- !u!1 &8709761434758061652
 GameObject:
   m_ObjectHideFlags: 0

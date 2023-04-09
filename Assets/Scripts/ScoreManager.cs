@@ -52,16 +52,21 @@ public class ScoreManager : SingletonMono<ScoreManager>
             case HitType.Perfect:
                 scoreRatio = PerfectScoreRatio;
                 PerfectHits += 1;
+                print("Perfect");
                 break;
 
             case HitType.Good:
                 scoreRatio = GoodScoreRatio;
                 GoodHits += 1;
+
+                print("Good");
                 break;
 
             case HitType.Bad:
                 scoreRatio = BadScoreRatio;
                 BadHits += 1;
+
+                print("Bad");
                 break;
 
             default:

@@ -214,6 +214,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1562200342553797490, guid: 3b9811aef2d48a24bbfb1404458acf42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1562200342553797490, guid: 3b9811aef2d48a24bbfb1404458acf42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1562200342570161152, guid: 3b9811aef2d48a24bbfb1404458acf42, type: 3}
       propertyPath: m_Name
       value: BeatMapGenerator

@@ -13,7 +13,9 @@ public class PlayerControl : MonoBehaviour
 
     int noteAmnt = 1, noteIndex = 0;
 
-    float musicTime = 0;
+    float musicTime = 0, hitTime = 0;
+
+    bool hasMiss = false;
 
     private void OnEnable()
     {
@@ -24,6 +26,7 @@ public class PlayerControl : MonoBehaviour
     private void OnDisable()
     {
         EventManager.Instance.onNewGameLoad -= LoadMusicDatas;
+        EventManager.Instance.onMusicPlay -= MusicTimerBegin;
     }
 
     // Update is called once per frame
@@ -31,11 +34,13 @@ public class PlayerControl : MonoBehaviour
     {
         musicTime += Time.deltaTime;
         Debug.Log(musicTime);
+        if (Input.GetKeyDown(KeyCode.J))
+            CheckNoteHit();
     }
 
     void LoadMusicDatas()
     {
-        noteAmnt = musicDatas.musics.Count - 1;
+        noteAmnt = musicDatas.musics.Count;
         noteIndex = 0;
     }
 
@@ -59,6 +64,29 @@ public class PlayerControl : MonoBehaviour
          *  TD < 0.2s       = Perfect
          *  0.2s < TD < 0.5 = Good
          *  TD < 0.5s       = Bad
+         *  
+         *  TH = 0.2f
+         *  
+         *  //How to check miss?
          */
+
+        hitTime = musicTime;
+        float noteTime = musicDatas.musics[0].beatMap[noteIndex].createTime;
+        float diffTime = Mathf.Abs(hitTime - noteTime);
+        if (diffTime < 0.2f)
+            ScoreManager.Instance.HitToScore(HitType.Perfect);
+        else if (0.2f <= diffTime && diffTime <= 0.5f)
+            ScoreManager.Instance.HitToScore(HitType.Good);
+        else
+            ScoreManager.Instance.HitToScore(HitType.Bad);
+
+        noteIndex++;
+    }
+
+    IEnumerator MissCheck()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (hasMiss)
+            noteIndex++;
     }
 }
