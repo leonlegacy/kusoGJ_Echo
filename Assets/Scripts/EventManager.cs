@@ -53,6 +53,7 @@ namespace CliffLeeCL
         public event Action onStopAudience;
         public event Action onBeatGenerate;
         public event Action onBeatRecycle;
+        public event Action<int> onHitType;
 
         public void OnGameStart()
         {
@@ -107,6 +108,11 @@ namespace CliffLeeCL
         public void OnBeatRecycle()
         {
             onBeatRecycle?.Invoke();
+        }
+
+        public void OnHitType(int i)
+        {
+            onHitType?.Invoke(i);
         }
     }
 }

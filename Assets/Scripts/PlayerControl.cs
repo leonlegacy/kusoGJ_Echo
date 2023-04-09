@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     Rhythm.MusicDatas musicDatas;
     [SerializeField]
-    Animator boomRed;
+    Animator boomRed, feedback;
 
     MusicData currentMusicData;
     int noteAmnt = 1, noteIndex = 0;
@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
         EventManager.Instance.onNewGameLoad += LoadMusicDatas;
         EventManager.Instance.onMusicPlay += MusicTimerBegin;
         EventManager.Instance.onBeatRecycle += NoteIndexCounter;
+        EventManager.Instance.onHitType += HitFeedback;
     }
 
     private void OnDisable()
@@ -28,6 +29,7 @@ public class PlayerControl : MonoBehaviour
         EventManager.Instance.onNewGameLoad -= LoadMusicDatas;
         EventManager.Instance.onMusicPlay -= MusicTimerBegin;
         EventManager.Instance.onBeatRecycle -= NoteIndexCounter;
+        EventManager.Instance.onHitType -= HitFeedback;
     }
 
     // Update is called once per frame
@@ -69,6 +71,25 @@ public class PlayerControl : MonoBehaviour
         currentMusicData = musicDatas.musics.Find(x => x.musicId == song.songId); 
         noteAmnt = currentMusicData.beatMap.Count;
         ScoreManager.Instance.TotalNotes = noteAmnt;
+    }
+
+    void HitFeedback(int i)
+    {
+        feedback.StopPlayback();
+        switch (i)
+        {
+            case 0:
+                feedback.Play("HitPerfect");
+                break;
+
+            case 1:
+                feedback.Play("HitGood");
+                break;
+
+            case 2:
+                feedback.Play("HitBad");
+                break;
+        }
     }
 
     void CheckNoteHit(BeatType beatType)

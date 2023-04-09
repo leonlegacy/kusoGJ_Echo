@@ -35,6 +35,14 @@ public class ScoreManager : SingletonMono<ScoreManager>
     private void Start()
     {
         NewGame();
+        feedback = null;
+        print(feedback);
+        if (feedback==null)
+        {
+            print("Finding");
+            GameObject.FindGameObjectWithTag("Feedback").GetComponent<Animator>();
+        }
+
     }
 
     public void NewGame()
@@ -49,28 +57,36 @@ public class ScoreManager : SingletonMono<ScoreManager>
     {
         //Called when a note is hit.
         float scored, scoreRatio;
-        feedback.StopPlayback();
+
+        
+
+        
         switch(type)
         {
             case HitType.Perfect:
                 scoreRatio = PerfectScoreRatio;
                 PerfectHits += 1;
                 print("Perfect");
-                feedback.Play("HitPerfect");
+                //feedback.Play("HitPerfect");
+                EventManager.Instance.OnHitType(0);
                 break;
 
             case HitType.Good:
                 scoreRatio = GoodScoreRatio;
                 GoodHits += 1;
                 print("Good");
-                feedback.Play("HitGood");
+                //feedback.Play("HitGood");
+
+                EventManager.Instance.OnHitType(1);
                 break;
 
             case HitType.Bad:
                 scoreRatio = BadScoreRatio;
                 BadHits += 1;
                 print("Bad");
-                feedback.Play("HitBad");
+                //feedback.Play("HitBad");
+
+                EventManager.Instance.OnHitType(2);
                 break;
 
             default:
