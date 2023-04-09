@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     Animator boomRed;
 
+    Song currentSong;
     int noteAmnt = 1, noteIndex = 0;
 
     float musicTime = 0, hitTime = 0;
@@ -39,24 +40,26 @@ public class PlayerControl : MonoBehaviour
     {
         musicTime += Time.deltaTime;
         //Debug.Log(musicTime);
-        if (Input.GetKeyUp(KeyCode.J))
-            CheckNoteHit();
+        if (Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.J))
+            CheckNoteHit(BeatType.Red);
+        else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.K))
+            CheckNoteHit(BeatType.Blue);
     }
 
     void LoadMusicDatas()
     {
-        
         noteIndex = 0;
     }
 
-    void MusicTimerBegin(Song _)
+    void MusicTimerBegin(Song song)
     {
         musicTime = 0;
         noteAmnt = musicDatas.musics[0].beatMap.Count;
+        currentSong = song;
         ScoreManager.Instance.TotalNotes = noteAmnt;
     }
 
-    void CheckNoteHit()
+    void CheckNoteHit(BeatType beatType)
     {
         /*
          *  Note launchs at 3.6s [CreateTime]
@@ -80,10 +83,11 @@ public class PlayerControl : MonoBehaviour
          */
         boomRed.StopPlayback();
         boomRed.Play("Boom");
-        if(noteIndex<noteAmnt)
+        var currentMusicData = musicDatas.musics.Find(x => x.musicId == currentSong.songId);
+        if(noteIndex < noteAmnt && currentMusicData.beatMap[noteIndex].beatType == beatType)
         {
             hitTime = musicTime;
-            float noteTime = musicDatas.musics[0].beatMap[noteIndex].createTime;
+            float noteTime = currentMusicData.beatMap[noteIndex].createTime;
             float diffTime = Mathf.Abs(hitTime - noteTime);
             if (diffTime < 0.15f)
             {
