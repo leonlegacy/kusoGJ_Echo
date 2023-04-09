@@ -11,6 +11,9 @@ namespace CliffLeeCL
 		[SerializeField]
 		private Button startBtn;
 
+		[SerializeField]
+		private GameObject startPanel;
+
 		private void Awake()
 		{
 			startBtn.onClick.AddListener(GameStart);
@@ -18,7 +21,8 @@ namespace CliffLeeCL
 
 		private void GameStart()
 		{
-			SceneManager.LoadScene("Game");
+			startPanel.SetActive(false);
+			EventManager.Instance.OnGameStart();
 		}
 	}
 }
