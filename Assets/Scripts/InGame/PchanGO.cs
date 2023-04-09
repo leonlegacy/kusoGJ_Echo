@@ -14,7 +14,12 @@ namespace CliffLeeCL.InGame
 			EventManager.Instance.onMusicPlay += PlayAni;
 		}
 
-		private void PlayAni(Song obj)
+        private void OnDisable()
+        {
+			EventManager.Instance.onMusicPlay -= PlayAni;
+		}
+
+        private void PlayAni(Song obj)
 		{
 			animator.Play("Pchan");
 		}

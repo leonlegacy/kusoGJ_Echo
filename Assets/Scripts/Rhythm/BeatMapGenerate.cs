@@ -39,7 +39,13 @@ namespace Rhythm{
 			EventManager.Instance.onMusicPlay += Generate;
 		}
 
-		public void Generate(Song song){
+        private void OnDisable()
+        {
+
+			EventManager.Instance.onMusicPlay -= Generate;
+		}
+
+        public void Generate(Song song){
 			musicData = musicDatas.musics.Find(x => x.musicId == song.songId);
 			musicData.Sort();
 			StartCoroutine(GenerateCoroutine());
