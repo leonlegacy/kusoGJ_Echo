@@ -36,10 +36,16 @@ namespace Rhythm
 
 			if(!isRecord || musicData == null) return;
 
-			if(Input.anyKeyDown)
+			if(Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.J))
 			{
 				lastCreateTime = Time.time - lastTime + lastCreateTime;
-				musicData.beatMap.Add(new Beat() { createTime = lastCreateTime });
+				musicData.beatMap.Add(new Beat() { createTime = lastCreateTime, beatType = BeatType.Red});
+				lastTime = Time.time;
+			}
+			else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.K))
+			{
+				lastCreateTime = Time.time - lastTime + lastCreateTime;
+				musicData.beatMap.Add(new Beat() { createTime = lastCreateTime, beatType = BeatType.Blue});
 				lastTime = Time.time;
 			}
 		}
