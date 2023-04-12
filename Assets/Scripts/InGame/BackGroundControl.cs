@@ -24,6 +24,11 @@ namespace CliffLeeCL.InGame
 			EventManager.Instance.onPlayerScored += OnScoredChange;
 		}
 
+		void OnDisable()
+		{
+			EventManager.Instance.onPlayerScored -= OnScoredChange;
+		}
+
 		private void Start()
 		{
 			stage = 0;

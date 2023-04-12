@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using CliffLeeCL;
 
@@ -34,18 +35,21 @@ public class ScoreManager : SingletonMono<ScoreManager>
 
     private void Start()
     {
-        NewGame();
         feedback = null;
-        print(feedback);
-        if (feedback==null)
+        if (feedback == null)
         {
-            print("Finding");
             GameObject.FindGameObjectWithTag("Feedback").GetComponent<Animator>();
         }
 
+        EventManager.Instance.onGameStart += NewGame;
     }
 
-    public void NewGame()
+    void OnDisable()
+    {
+        EventManager.Instance.onGameStart -= NewGame;
+    }
+
+    void NewGame()
     {
         CurrentScore = TotalScore;
         PerfectHits = 0;
@@ -58,9 +62,6 @@ public class ScoreManager : SingletonMono<ScoreManager>
         //Called when a note is hit.
         float scored, scoreRatio;
 
-        
-
-        
         switch(type)
         {
             case HitType.Perfect:

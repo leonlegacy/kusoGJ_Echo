@@ -14,6 +14,11 @@ namespace CliffLeeCL.InGame
 			EventManager.Instance.onPlayerScored += ScoreChanged;
 		}
 
+		void OnDisable()
+		{
+			EventManager.Instance.onPlayerScored -= ScoreChanged;
+		}
+
 		private void ScoreChanged()
 		{
 			clearBar.fillAmount = ScoreManager.Instance.CurrentScore / ScoreManager.Instance.TotalScore;
