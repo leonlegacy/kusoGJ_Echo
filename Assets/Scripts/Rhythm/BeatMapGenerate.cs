@@ -33,24 +33,51 @@ namespace Rhythm{
 		private MusicData musicData;
 
 		private ObjectPool<BeatGO> beatPool;
+		
+		int lastGenerateBeatIndex = 0;
+
+		bool canGenerateBeat;
 
 		private void Awake(){
 			beatPool = new ObjectPool<BeatGO>(InstantiateBeat,OnGenerateBeat);
 			EventManager.Instance.onMusicPlay += Generate;
+			EventManager.Instance.onGameOver += StopGenerate;
 		}
 
-        private void OnDisable()
-        {
+		void Update()
+		{
+			if (!canGenerateBeat || lastGenerateBeatIndex >= musicData.beatMap.Count)
+				return;
+		
+			var lastBeat = musicData.beatMap[lastGenerateBeatIndex];
+			var currentSongTime = AudioSettings.dspTime - MusicPlayer.Instance.lastPlayedDspTime;
+			if (currentSongTime > lastBeat.createTime - inSpeed)
+			{
+				var go = beatPool.Get();
+				go.Init(lastBeat.beatType);
+				lastGenerateBeatIndex++;
+				EventManager.Instance.OnBeatGenerate();
+			}
+		}
 
+		private void OnDisable()
+        {
 			EventManager.Instance.onMusicPlay -= Generate;
+			EventManager.Instance.onGameOver -= StopGenerate;
 		}
 
         public void Generate(Song song){
 			musicData = musicDatas.musics.Find(x => x.musicId == song.songId);
 			musicData.Sort();
-			StartCoroutine(GenerateCoroutine());
-		}
+			lastGenerateBeatIndex = 0;
+			canGenerateBeat = true;
+        }
 
+		void StopGenerate()
+		{
+			canGenerateBeat = false;
+		}
+		
 		private IEnumerator GenerateCoroutine(){
 			float lastSpawnTime = inSpeed;
 

@@ -11,12 +11,12 @@ public class MusicPlayer : SerializedMonoBehaviour {
     /// </summary>
     public static MusicPlayer Instance;
     
+    public double lastPlayedDspTime;
     public string currentSongName;
     public Dictionary<string, Song> songNameToSongDict;
 
     [SerializeField] float songDelayTime;
     [SerializeField] bool isSongPlayed;
-    double lastPlayedDspTime;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -75,7 +75,6 @@ public class MusicPlayer : SerializedMonoBehaviour {
             AudioManager.Instance.PlayMusicReversed(songNameToSongDict[songName].audioName, songDelayTime);
         else
             AudioManager.Instance.PlayMusic(songNameToSongDict[songName].audioName, songDelayTime);
-        lastPlayedDspTime = AudioSettings.dspTime + songDelayTime;
         isSongPlayed = true;
         StartCoroutine(DelayMusicPlayEvent(songName));
     }
@@ -84,6 +83,7 @@ public class MusicPlayer : SerializedMonoBehaviour {
     {
         yield return new WaitForSeconds(songDelayTime);
         EventManager.Instance.OnMusicPlay(songNameToSongDict[songName]);
+        lastPlayedDspTime = AudioSettings.dspTime;
     }
 
     public double StopSong()

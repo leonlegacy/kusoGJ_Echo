@@ -124,16 +124,16 @@ public class PlayerControl : MonoBehaviour
             hitDspTime = AudioSettings.dspTime - musicStartDspTime;
             var noteTime = currentMusicData.beatMap[noteIndex].createTime;
             var diffTime = Mathf.Abs((float)hitDspTime - noteTime);
-            if (diffTime < 0.15f)
+            if (diffTime < 0.05f)
             {
                 ScoreManager.Instance.HitToScore(HitType.Perfect);
             }
-            else if (0.15f < diffTime && diffTime <= 0.3f)
+            else if (0.05f < diffTime && diffTime <= 0.1f)
             {
                 ScoreManager.Instance.HitToScore(HitType.Good);
 
             }
-            else if (0.3f < diffTime)
+            else if (0.1f < diffTime)
             {
                 ScoreManager.Instance.HitToScore(HitType.Bad);
             }
