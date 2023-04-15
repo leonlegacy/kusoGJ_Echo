@@ -218,10 +218,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartGamePanel
       objectReference: {fileID: 0}
-    - target: {fileID: 6589122654445167078, guid: 7a42854fe4b7cd04caedbf3431bbc6ee, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a42854fe4b7cd04caedbf3431bbc6ee, type: 3}
 --- !u!1 &189459987
