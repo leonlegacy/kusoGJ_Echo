@@ -24,7 +24,7 @@ MonoBehaviour:
   audioName: 2
   songName: Miku
   duration: 0
-  forwardBeatOffset: 0
-  reversedBeatOffset: 0.2
+  forwardBeatOffset: 0.2
+  reversedBeatOffset: 0
   beatsPerMinute: 119
   songId: 2

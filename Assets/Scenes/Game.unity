@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartGamePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6589122654445167078, guid: 7a42854fe4b7cd04caedbf3431bbc6ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a42854fe4b7cd04caedbf3431bbc6ee, type: 3}
 --- !u!1 &189459987
@@ -1809,6 +1813,10 @@ PrefabInstance:
     - target: {fileID: 120607685778644778, guid: 155aec6ac46de7045ac7c430f64a601d, type: 3}
       propertyPath: m_Name
       value: ClearBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 120607685778644778, guid: 155aec6ac46de7045ac7c430f64a601d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 120607685778644789, guid: 155aec6ac46de7045ac7c430f64a601d, type: 3}
       propertyPath: m_Pivot.x
